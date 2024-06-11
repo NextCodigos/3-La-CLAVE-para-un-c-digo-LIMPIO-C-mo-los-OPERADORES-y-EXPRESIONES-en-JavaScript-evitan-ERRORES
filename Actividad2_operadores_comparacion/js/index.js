@@ -7,8 +7,14 @@ const PASSWORD_CORRECTO="1234";
 /* Estos son los datos del usuario
 (modifícalos para comprobar que todo funciona correctamente)*/
 
-const NOMBRE="soyjab";
-const PIN=0;
+// Ejemplo1
+// const NOMBRE="soyjab";
+// const PIN=0;
+// const PASSWORD="1234";
+
+// Ejemplo2
+const NOMBRE="jab";
+const PIN=124;
 const PASSWORD="1234";
 
 /*
@@ -28,6 +34,11 @@ En el resto de casos: "Mal" (color "red")
   ? ______
   : ______
 */
+( (NOMBRE==PIN && PIN==PASSWORD && NOMBRE!="")
+|| (NOMBRE===NOMBRE_CORRECTO || NOMBRE===ALIAS_CORRECTO)
+&& PASSWORD===PASSWORD_CORRECTO || PIN===PIN_CORRECTO)
+? dibujar(`<div class="bien">Bien</div>`)
+: dibujar(`<div class="mal">Mal</div>`)
 
 
 function dibujar(valor){

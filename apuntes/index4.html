@@ -38,26 +38,32 @@
     <!-- <script src="index.js"></script> -->
      <script>
         let caja=document.querySelector(".contenedor");
-        let numero1=2;
-        let numero2=6;
+        let numero1=true;
+        let numero2=2;
+        let numero3="1"
         let nombre="Jab";
 
-        // Operaciones con variables
-        numero1+=10;
-
-        // Iserto con funcion mejor que linea abajo
-        // caja.innerHTML=numero1;
-        dibujar(++numero1,nombre);
-        numero2-=1;
-        // Suma en figuiente linea
-        dibujar(numero2++,nombre);
-        // Creo funcion para no repetir
-        // caja.innerHTML+=`<div>${numero2}</div>`;
-        dibujar(numero2++,nombre);
+        // Operadores de comparacion
+        // ==
+        // ===
+        // >=
+        // <=
+        // !=
+        // !==
+        // ! Invertimos valor si es true false
         
-        function dibujar(valor,nombre){
+        // Compara el valor y el tipo 
+        let resultado=numero1===numero3;
+        dibujar(resultado);//False
+
+        // Compara el valor no el tipo 
+        let resultado2=numero1==numero3;
+        dibujar(resultado2);//True
+
+        
+        function dibujar(valor){
             caja.innerHTML+=`<div>${valor}</div>`;
-            caja.innerHTML+=`<div>${nombre}</div>`;
+            
         }
         
      </script>

@@ -38,26 +38,37 @@
     <!-- <script src="index.js"></script> -->
      <script>
         let caja=document.querySelector(".contenedor");
-        let numero1=2;
-        let numero2=6;
+        let numero1=0;
+        let numero2=2;
+        let numero3="3"
         let nombre="Jab";
 
-        // Operaciones con variables
-        numero1+=10;
+        // Operadores de comparacion
+        // ==
+        // ===
+        // >=
+        // <=
+        // !=
+        // !==
 
-        // Iserto con funcion mejor que linea abajo
-        // caja.innerHTML=numero1;
-        dibujar(++numero1,nombre);
-        numero2-=1;
-        // Suma en figuiente linea
-        dibujar(numero2++,nombre);
-        // Creo funcion para no repetir
-        // caja.innerHTML+=`<div>${numero2}</div>`;
-        dibujar(numero2++,nombre);
+        // ! Invertimos valor si es true false
+        // LA conversion de un valor a False:
+        // Todos estos valores cuando los convertimos a boleano daran False:
+        // false | 0 | "" | null | undefined | NaN
         
-        function dibujar(valor,nombre){
+        // Esto seria true
+        // Invertimos valor boleano a False
+        numero2=!numero2;
+        // Volvemos a invertir a True no modificamos su valor
+        dibujar(!numero2);//True
+        dibujar(numero2);//False
+
+        
+
+        
+        function dibujar(valor){
             caja.innerHTML+=`<div>${valor}</div>`;
-            caja.innerHTML+=`<div>${nombre}</div>`;
+            
         }
         
      </script>

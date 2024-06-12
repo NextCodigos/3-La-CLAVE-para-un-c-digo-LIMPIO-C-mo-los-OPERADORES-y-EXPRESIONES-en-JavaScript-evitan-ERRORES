@@ -1,0 +1,254 @@
+<fieldset class="product-information borde_naranja" style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px; padding-top: 10px;display: block; margin-bottom: 0"><legend><b><span class="numberCircle">2</span> ¿QUIERES PERSONALIZAR EL PRODUCTO?</b></legend><div class="col-sm-12" id="estampacionLugar"><div style="text-align:center;position: relative;"><br>
+<div class="conten" style="text-align: left; border-top: 1px solid black">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: right">
+        <span class="glyphicon glyphicon-remove borraTrabajo modificadorPrecio" data-path="/es/producto/precio" style="cursor: pointer"></span>
+        </div>
+                <div class="col-sm-12 personalizacionDeCarrito" id="personalizacionDeCarrito101" data-npersonalizacion="101" style="display: none;">
+            <label>Seleccione la personalización:</label>
+            <select class="personalizacionTipo2 modificadorPrecio" style="height: 40px" data-path="/es/producto/precio">
+                                            </select>
+        </div>
+        <div id="nuevaPersonalizacion101" class="nuevaPersonalizacion">
+            <div class="col-sm-3">
+                <label>Metodo de impresión:</label>
+                <select class="personalizacionTipo conTinta" style="height: 40px;" data-path="/es/producto/precio">
+                                                                <option value="A1" data-colores="6" data-areaname="">Serigrafia </option>
+                                            <option value="NI" data-colores="0" data-areaname="">Nombre Individual </option>
+                                            <option value="P1" data-colores="0" data-areaname="">Bordado [Hasta 12cm] alto o ancho </option>
+                                            <option value="P2" data-colores="0" data-areaname="">Bordado [Hasta 26cm] alto o ancho </option>
+                                            <option value="T1" data-colores="0" data-areaname="">DTF todo color [28cm x 40cm] </option>
+                                            <option value="T2" data-colores="0" data-areaname="">DTF todo color [20cm x 28cm] </option>
+                                            <option value="T3" data-colores="0" data-areaname="">DTF todo color [20cm x 14cm] </option>
+                                            <option value="T4" data-colores="0" data-areaname="">DTF todo color [10cm x 10cm] </option>
+                                    </select>
+            </div>
+            <div class="col-sm-3 colores" style="">
+                            <label>Tintas:</label><select style="height: 40px;" class="modificadorPrecio numColores" data-path="/es/producto/precio"><option value="1">1 Tintas</option><option value="2">2 Tintas</option><option value="3">3 Tintas</option><option value="4">4 Tintas</option><option value="5">5 Tintas</option><option value="6">6 Tintas</option></select></div>
+            
+                            <div class="col-sm-3">
+                    <label>Indica la ubicación</label><br>
+                                            <select class="modificadorPrecio ubicacion" style="height: 40px;" data-path="/es/producto/precio">
+                            <option value="Pecho">Pecho
+                            </option>
+                            <option value="Espalda">
+                                Espalda
+                            </option>
+                            <option value="Manga Izquierda">
+                                Manga Izquierda
+                            </option>
+                            <option value="Manga Derecha">
+                                Manga Derecha
+                            </option>
+                        </select>
+                                                                            </div>
+                        <div class="col-sm-3">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span style="margin-bottom: 0;margin-top: 0">Subir Archivo</span>
+                    <!-- The file input field used as target for the file upload widget -->
+        <input class="fileupload" id="fileUpload101" type="file" name="files[]">
+    </span>
+                <!-- The global progress bar -->
+                <div id="progress101" class="progress" style="margin-bottom: 5px;">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div class="files" id="fileUploadFiles101"></div>
+            </div>
+            <div class="col-sm-12"><input type="text" id="observaciones101" name="observaciones101" class="observaciones" placeholder="INDICAR: - Color - Tamaño - Observaciones -" style="width: 100%; margin-bottom: 20px"></div>
+        </div>
+    </div>
+                </div>
+
+
+<script>
+    $('.borraTrabajo').click(function () {
+
+        $(this).parent().parent().parent().parent().remove();
+
+        if ($('.borraTrabajo').length == 0) {
+            $("#textoAddPersonalizacion").html("Añadir Personalización");
+        }
+    });
+    $(document).ready(function () {
+
+        $(".personalizacionTipo").change(function () {
+            var miubicacion = $(this).find(":selected").data('areaname');
+            if (miubicacion != "") {
+                $(".ubicacion").val(miubicacion);
+            }
+        });
+        $(".personalizacionTipo").change();
+        $(function () {
+            'use strict';
+            // Change this to the location of your server-side upload handler:
+            var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : '/uploadGalleryTKM';
+            $('#fileUpload101').fileupload({
+                url: url,
+                dataType: 'json',
+                done: function (e, data) {
+                    $.each(data.result.files, function (index, file) {
+                        $('#fileUploadFiles101').html($('<p class="file-subido"></p>').text(file.name));
+                                            });
+                    cargaDivPrecio("/es/producto/precio");
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress101 .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }
+            }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
+
+        $('input[type=radio][class=personalizacionCarrito]').change(function () {
+            var nPersonalizacionesData = $(this).data('npersonalizaciones');
+            if (this.value == 'Si') {
+
+                $("#nuevaPersonalizacion" + nPersonalizacionesData).hide();
+                $("#personalizacionDeCarrito" + nPersonalizacionesData).show();
+
+            } else if (this.value == 'No') {
+                $("#personalizacionDeCarrito" + nPersonalizacionesData).hide();
+                $("#nuevaPersonalizacion" + nPersonalizacionesData).show();
+            }
+            cargaDivPrecio($(this).data('path'));
+        });
+    });
+</script></div><div style="text-align:center;position: relative;"><br>
+<div class="conten" style="text-align: left; border-top: 1px solid black">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: right">
+        <span class="glyphicon glyphicon-remove borraTrabajo modificadorPrecio" data-path="/es/producto/precio" style="cursor: pointer"></span>
+        </div>
+                <div class="col-sm-12 personalizacionDeCarrito" id="personalizacionDeCarrito102" data-npersonalizacion="102" style="display: none;">
+            <label>Seleccione la personalización:</label>
+            <select class="personalizacionTipo2 modificadorPrecio" style="height: 40px" data-path="/es/producto/precio">
+                                            </select>
+        </div>
+        <div id="nuevaPersonalizacion102" class="nuevaPersonalizacion">
+            <div class="col-sm-3">
+                <label>Metodo de impresión:</label>
+                <select class="personalizacionTipo conTinta" style="height: 40px;" data-path="/es/producto/precio">
+                                                                <option value="A1" data-colores="6" data-areaname="">Serigrafia </option>
+                                            <option value="NI" data-colores="0" data-areaname="">Nombre Individual </option>
+                                            <option value="P1" data-colores="0" data-areaname="">Bordado [Hasta 12cm] alto o ancho </option>
+                                            <option value="P2" data-colores="0" data-areaname="">Bordado [Hasta 26cm] alto o ancho </option>
+                                            <option value="T1" data-colores="0" data-areaname="">DTF todo color [28cm x 40cm] </option>
+                                            <option value="T2" data-colores="0" data-areaname="">DTF todo color [20cm x 28cm] </option>
+                                            <option value="T3" data-colores="0" data-areaname="">DTF todo color [20cm x 14cm] </option>
+                                            <option value="T4" data-colores="0" data-areaname="">DTF todo color [10cm x 10cm] </option>
+                                    </select>
+            </div>
+            <div class="col-sm-3 colores" style="">
+                            <label>Tintas:</label><select style="height: 40px;" class="modificadorPrecio numColores" data-path="/es/producto/precio"><option value="1">1 Tintas</option><option value="2">2 Tintas</option><option value="3">3 Tintas</option><option value="4">4 Tintas</option><option value="5">5 Tintas</option><option value="6">6 Tintas</option></select></div>
+            
+                            <div class="col-sm-3">
+                    <label>Indica la ubicación</label><br>
+                                            <select class="modificadorPrecio ubicacion" style="height: 40px;" data-path="/es/producto/precio">
+                            <option value="Pecho">Pecho
+                            </option>
+                            <option value="Espalda">
+                                Espalda
+                            </option>
+                            <option value="Manga Izquierda">
+                                Manga Izquierda
+                            </option>
+                            <option value="Manga Derecha">
+                                Manga Derecha
+                            </option>
+                        </select>
+                                                                            </div>
+                        <div class="col-sm-3">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span style="margin-bottom: 0;margin-top: 0">Subir Archivo</span>
+                    <!-- The file input field used as target for the file upload widget -->
+        <input class="fileupload" id="fileUpload102" type="file" name="files[]">
+    </span>
+                <!-- The global progress bar -->
+                <div id="progress102" class="progress" style="margin-bottom: 5px;">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div class="files" id="fileUploadFiles102"></div>
+            </div>
+            <div class="col-sm-12"><input type="text" id="observaciones102" name="observaciones102" class="observaciones" placeholder="INDICAR: - Color - Tamaño - Observaciones -" style="width: 100%; margin-bottom: 20px"></div>
+        </div>
+    </div>
+                </div>
+
+
+<script>
+    $('.borraTrabajo').click(function () {
+
+        $(this).parent().parent().parent().parent().remove();
+
+        if ($('.borraTrabajo').length == 0) {
+            $("#textoAddPersonalizacion").html("Añadir Personalización");
+        }
+    });
+    $(document).ready(function () {
+
+        $(".personalizacionTipo").change(function () {
+            var miubicacion = $(this).find(":selected").data('areaname');
+            if (miubicacion != "") {
+                $(".ubicacion").val(miubicacion);
+            }
+        });
+        $(".personalizacionTipo").change();
+        $(function () {
+            'use strict';
+            // Change this to the location of your server-side upload handler:
+            var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : '/uploadGalleryTKM';
+            $('#fileUpload102').fileupload({
+                url: url,
+                dataType: 'json',
+                done: function (e, data) {
+                    $.each(data.result.files, function (index, file) {
+                        $('#fileUploadFiles102').html($('<p class="file-subido"></p>').text(file.name));
+                                            });
+                    cargaDivPrecio("/es/producto/precio");
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress102 .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }
+            }).prop('disabled', !$.support.fileInput)
+                .parent().addClass($.support.fileInput ? undefined : 'disabled');
+        });
+
+        $('input[type=radio][class=personalizacionCarrito]').change(function () {
+            var nPersonalizacionesData = $(this).data('npersonalizaciones');
+            if (this.value == 'Si') {
+
+                $("#nuevaPersonalizacion" + nPersonalizacionesData).hide();
+                $("#personalizacionDeCarrito" + nPersonalizacionesData).show();
+
+            } else if (this.value == 'No') {
+                $("#personalizacionDeCarrito" + nPersonalizacionesData).hide();
+                $("#nuevaPersonalizacion" + nPersonalizacionesData).show();
+            }
+            cargaDivPrecio($(this).data('path'));
+        });
+    });
+</script></div></div><div><p>Puedes añadir tantas personalizaciones como quieras al producto
+                            pulsando el botón
+                            <span class="naranja addPersonalizacion" style="cursor: pointer">'+ Añadir personalización'</span>
+                            y
+                            añadir distintos
+                            diseños en distintos lugares del producto. Cuando hayas terminado de personalizar el
+                            producto
+                            puedes pasar a ver el <span class="naranja scrollResumen" style="cursor: pointer;">Resumen de Pedido</span>.
+                        </p></div><br><div class="col-sm-12" style="text-align: center"><button class="button" id="addPersonalizacion" data-modelo="17214" style="background-color: white; border: 2px solid #ff9933; color: black"><span class="glyphicon glyphicon-plus-sign" style="margin: 0"></span><span id="textoAddPersonalizacion" style="margin: 0; padding: 0;">Añadir Otra Personalización</span></button></div><br><div class="funkyradio"><div class="funkyradio-success"><input type="checkbox" name="checkbox" id="doblembol" data-path="/es/producto/precio" class="modificadorPrecio"><label for="doblembol" title="Si marcas esta opción enviaremos las camisetas dobladas y embolsadas de forma individual">
+                                Doblado y embolsado individual                            </label></div></div></fieldset>

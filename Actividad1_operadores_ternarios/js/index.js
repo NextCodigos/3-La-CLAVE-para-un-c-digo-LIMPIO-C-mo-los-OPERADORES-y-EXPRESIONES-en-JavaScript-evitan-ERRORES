@@ -1,4 +1,4 @@
-let nota = 9;
+let nota = 6;
 
 (nota<0 || nota>10)
 ? dibujar("No te flipes")

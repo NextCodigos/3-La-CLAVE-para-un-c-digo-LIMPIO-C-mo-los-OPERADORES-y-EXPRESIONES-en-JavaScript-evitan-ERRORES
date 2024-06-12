@@ -47,15 +47,15 @@
 
         // Iserto con funcion mejor que linea abajo
         // caja.innerHTML=numero1;
-        dibujar(++numero1,nombre);
+        dibujar(++numero1);
         numero2-=1;
         // Suma en figuiente linea
-        dibujar(numero2++,nombre);
+        dibujar(numero2++);
         // Creo funcion para no repetir
         // caja.innerHTML+=`<div>${numero2}</div>`;
-        dibujar(numero2++,nombre);
+        dibujar(numero2++);
         
-        function dibujar(valor,nombre){
+        function dibujar(valor){
             caja.innerHTML+=`<div>${valor}</div>`;
             caja.innerHTML+=`<div>${nombre}</div>`;
         }

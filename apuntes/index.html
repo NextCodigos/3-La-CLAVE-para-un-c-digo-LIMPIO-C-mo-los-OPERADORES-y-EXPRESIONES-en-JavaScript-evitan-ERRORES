@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contenedor{
+            border: 2px solid rgb(29, 145, 44);
+            padding: 10px;
+            margin: 10px;
+            font-size: 50px;
+            color: rgb(14, 24, 135);
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            word-spacing: 10px;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: red;
+            /* text-decoration-style: dotted; */
+            text-decoration-thickness: 5px;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF, 0 0 20px #00FFFF;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF, 0 0 20px #00FFFF, 0 0 25px #00FF00;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF, 0 0 20px #00FFFF, 0 0 25px #00FF00, 0 0 30px #0000FF;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF, 0 0 20px #00FFFF, 0 0 25px #00FF00, 0 0 30px #0000FF, 0 0 35px #FF00FF;
+            text-shadow: 0 0 5px #FF0000, 0 0 10px #0000FF, 0 0 15px #FF00FF, 0 0 20px #00FFFF, 0 0 25px #00FF00, 0 0 30px #0000FF, 0 0 35px #FF00FF, 0 0 40px #00FFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor"></div>
+    <!-- <script src="index.js"></script> -->
+     <script>
+        let caja=document.querySelector(".contenedor");
+        let numero1=2;
+        let numero2=6;
+        let nombre="Jab";
+
+        // Operaciones con variables
+        numero1+=10;
+
+        // Iserto con funcion mejor que linea abajo
+        // caja.innerHTML=numero1;
+        dibujar(numero1,nombre);
+        numero2-=1;
+        dibujar(numero2,nombre);
+        // Creo funcion para no repetir
+        // caja.innerHTML+=`<div>${numero2}</div>`;
+
+        function dibujar(valor,nombre){
+            caja.innerHTML+=`<div>${valor}</div>`;
+            caja.innerHTML+=`<div>${nombre}</div>`;
+        }
+        
+     </script>
+</body>
+</html>
